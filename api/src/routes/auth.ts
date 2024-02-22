@@ -1,5 +1,5 @@
 import Router from 'express'
-import { logIn, logOut, signUp } from '../controllers/firebase/auth'
+import { logIn, logOut, signUp } from '../controllers/auth'
 import { validateUser } from '../middleware/validation'
 
 const router = Router()

@@ -7,6 +7,7 @@ import authRouter from './routes/auth'
 import paymentRouter from './routes/payment'
 import walletRouter from './routes/wallet'
 import transactionRouter from './routes/transaction'
+import ratesRouter from './routes/rates'
 
 import { connectDB } from './database/db'
 
@@ -32,6 +33,9 @@ app.use('/v1', authRouter)
 app.use('/v1', paymentRouter)
 app.use('/v1', walletRouter)
 app.use('/v1', transactionRouter)
+app.use('/v1', ratesRouter)
+
+
 
 app.listen(PORT, () => {
     if (process.env.NODE_ENV !== 'production')

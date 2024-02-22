@@ -1,67 +1,59 @@
 import { Request, Response } from 'express'
-import { getEmailFromUserCollection } from '../database/connections/user'
-import { UserModel } from '../models/user'
-import { comparePassword, encryptPassword, generateToken } from '../utils/auth'
-
-export const createAccount = async (req: Request, res: Response) => {
+import admin from '../config/firebase'
+import { signInWithEmailAndPassword, getAuth, signOut } from 'firebase/auth'
+export const signUp = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body
-        const username = email.split('@')[0]
-        const user = await getEmailFromUserCollection(email)
-        if (user) {
-            return res.status(400).json({
-                status: 'error',
-                message: `Email: ${email} is already used`,
-            })
-        }
-        let newUser = new UserModel({
+        const userCredential = await admin.auth().createUser({
             email,
             password,
-            username,
         })
-        newUser.password = await encryptPassword(newUser.password)
-        await UserModel.create(newUser)
-        const token = generateToken(newUser)
-        return res.status(201).json({
-            status: 'success',
-            token,
-            user: newUser,
-        })
+
+        const auth = getAuth()
+        const userResponse = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password,
+        )
+        const token = await userResponse.user.getIdToken()
+        return res.status(201).json({ user: userCredential, token })
     } catch (error: any) {
-        return res.status(500).json({
-            status: 'error',
-            message: error.message,
-        })
+        res.status(400).json({ message: error.message })
     }
 }
 
-export const loginToAccount = async (req: Request, res: Response) => {
+export const logIn = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body
-        const user = await getEmailFromUserCollection(email)
-        if (!user) {
-            return res.status(400).json({
-                message: 'Email is not registered to an account.',
-                status: 'error',
-            })
+        await admin.auth().getUserByEmail(email)
+        const auth = getAuth()
+        const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password,
+        )
+
+        const token = await userCredential.user.getIdToken()
+        const userResponse = {
+            details: userCredential.user.providerData,
+            email: userCredential.user.email,
         }
-        const isPasswordValid = await comparePassword(password, user.password)
-        if (!isPasswordValid) {
-            return res.status(400).json({
-                status: 'error',
-                message: 'Invalid password or email',
-            })
-        }
-        const token = generateToken(user)
         return res.status(201).json({
+            user: userResponse,
             token,
-            user,
-            status: 'success',
         })
     } catch (error: any) {
-        return res.status(500).json({
-            status: 'error',
-            message: error.message,
-        })
+        res.status(400).json({ message: error.message })
+    }
+}
+
+export const logOut = async (req: Request, res: Response) => {
+    try {
+        const auth = getAuth()
+        signOut(auth)
+            .then(() => res.status(200).json({ message: 'Logout successful' }))
+            .catch(error => res.status(400).send({ message: error.message }))
+    } catch (error: any) {
+        res.status(500).json({ message: error.message })
     }
 }

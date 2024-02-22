@@ -1,0 +1,25 @@
+export const colors = {
+    dark: {
+        mainBg: '#20212c',
+        secBg: '#2B2C37',
+        modalBg: '#2B2C37',
+        textColor: '#ffffff',
+    },
+    light: {
+        mainBg: '#ffffff',
+        secBg: '#FAFAFA',
+        modalBg: '#FFFFFF',
+        textColor: '#20212c',
+    },
+    columnBg: '#F4F7FD',
+    pryColor: '#670B78',
+    secColor: '#A8A4FF',
+    secBtnColor: '#ECE1ED',
+    secBtnHoverColor: '#d8d7f1',
+    black: '#000000',
+    secTextColor: '#828FA3',
+    secBgColor: '#161d2f',
+    white: '#ffffff',
+    danger: '#ea5555',
+    btnDangerHover: '#ff9898',
+}

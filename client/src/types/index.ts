@@ -23,3 +23,17 @@ export interface ILoginPayload {
     email: string
     password: string
 }
+
+export interface IRequestPaymentPayload {
+    valueInUSD: number
+    payerEmail: string
+}
+export interface ITransferMoneyPayload {
+    email: string
+    valueInUSD: number
+    phone: string
+    redeemData: {
+        walletID: string
+        interledgerWalletAddress?: string
+    }
+}

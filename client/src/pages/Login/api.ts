@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useMutation } from '@tanstack/react-query'
 import { baseUrl } from '../../api/config'
 import { USER_AUTH_KEY } from '../../config/config'
-import { DASHBOARD } from '../../routes/pathnames'
+import { DASHBOARD, LOGIN_PAGE } from '../../routes/pathnames'
 import { ILoginPayload } from '../../types'
 import { setLocalStorage } from '../../utils/helpers'
 import { useCustomToast } from '../../utils/toast'
@@ -24,3 +24,4 @@ export const useAccountLogin = () => {
         },
     })
 }
+

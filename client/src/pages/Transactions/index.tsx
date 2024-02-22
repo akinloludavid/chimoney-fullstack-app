@@ -1,7 +1,10 @@
-import React from 'react'
+import { Box } from '@chakra-ui/react'
+import { useGetTransactions } from './api'
 
 const Transaction = () => {
-    return <div>Transaction</div>
+    const { data } = useGetTransactions()
+    console.log(data)
+    return <Box></Box>
 }
 
 export default Transaction

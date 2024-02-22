@@ -8,8 +8,10 @@ import {
 } from '@chakra-ui/react'
 import { IoChevronDownOutline } from 'react-icons/io5'
 import { FaUserCircle } from 'react-icons/fa'
+import { useAccountLogout } from './api'
 
 const UserProfile = () => {
+    const { mutate: handleLogout, isPending } = useAccountLogout()
     return (
         <Menu>
             <MenuButton
@@ -25,7 +27,7 @@ const UserProfile = () => {
             <MenuList>
                 <MenuItem>Download</MenuItem>
 
-                <MenuItem>Sign Out</MenuItem>
+                <MenuItem onClick={() => handleLogout()}>Sign Out</MenuItem>
             </MenuList>
         </Menu>
     )

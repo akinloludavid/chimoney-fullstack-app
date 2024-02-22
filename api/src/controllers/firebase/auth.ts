@@ -9,7 +9,14 @@ export const signUp = async (req: Request, res: Response) => {
             password,
         })
 
-        return res.status(201).json({ user: userCredential })
+        const auth = getAuth()
+        const userResponse = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password,
+        )
+        const token = await userResponse.user.getIdToken()
+        return res.status(201).json({ user: userCredential, token })
     } catch (error: any) {
         res.status(400).json({ message: error.message })
     }
@@ -25,9 +32,7 @@ export const logIn = async (req: Request, res: Response) => {
             email,
             password,
         )
-        // const token = await admin
-        //     .auth()
-        //     .createCustomToken(userCredential.user.uid)
+
         const token = await userCredential.user.getIdToken()
         const userResponse = {
             details: userCredential.user.providerData,

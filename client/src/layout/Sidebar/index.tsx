@@ -24,6 +24,7 @@ const Sidebar = () => {
                 {navLinks.map(link => (
                     <Button
                         w='full'
+                        key={link.route}
                         variant={
                             isNavActive(link.route)
                                 ? 'navActive'

@@ -12,3 +12,14 @@ export const userInfo = getFromLocalStorage(USER_AUTH_KEY)
 export const isNavActive = (route: string) => {
     return window.location.pathname.includes(route)
 }
+export const formatYupError = (err: any) => {
+    let errList = {}
+    console.log(err.errors)
+    err.inner.forEach((e: any) => {
+        errList = {
+            ...errList,
+            [e.path]: e.message,
+        }
+    })
+    return errList
+}

@@ -1,5 +1,4 @@
 import {
-    Box,
     Heading,
     Icon,
     Modal,
@@ -27,7 +26,7 @@ const ModalContainer = ({
     return (
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent maxH={'520px'} overflowY='scroll'>
                 <ModalHeader
                     display={'flex'}
                     alignItems='center'

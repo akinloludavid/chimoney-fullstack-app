@@ -10,20 +10,20 @@ export const TextStyle = {
     // styles for different visual variants ("outline", "solid")
     variants: {
         medium: (props: StyleFunctionProps) => ({
-            fontSize: '13px',
+            fontSize: '15px',
             fontWeight: '500',
             lineHeight: '26px',
             color: props.colorMode === 'dark' ? 'white' : 'black',
         }),
         small: (props: StyleFunctionProps) => ({
             fontSize: '12px',
-            fontWeight: '700',
+            fontWeight: '500',
             lineHeight: '15px',
             color: props.colorMode === 'dark' ? 'white' : 'black',
         }),
         error: {
             fontSize: '12px',
-            fontWeight: '700',
+            fontWeight: '500',
             lineHeight: '15px',
             color: '#EA5555',
         },

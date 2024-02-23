@@ -1,5 +1,6 @@
 import React from 'react'
-
+import * as Yup from 'yup'
+import { transferMoneySchema } from '../utils/validations'
 export interface IAppRoute {
     path: string
     element: React.ReactNode
@@ -33,7 +34,7 @@ export interface ITransferMoneyPayload {
     valueInUSD: number
     phone: string
     redeemData: {
-        walletID: string
+        walletID?: string
         interledgerWalletAddress?: string
     }
 }

@@ -29,7 +29,7 @@ export const ButtonStyles = {
         primary: (props: StyleFunctionProps) => ({
             bg: 'pryColor',
             fontSize: '15px',
-            fontWeight: '700',
+            fontWeight: '500',
             lineHeight: '19px',
             borderRadius: '20px',
             color: 'white',
@@ -51,7 +51,7 @@ export const ButtonStyles = {
         secondary: (props: StyleFunctionProps) => ({
             bg: props.colorMode === 'dark' ? '#EFEFF9' : 'secBtnColor',
             fontSize: '15px',
-            fontWeight: '700',
+            fontWeight: '500',
             lineHeight: '19px',
             borderRadius: '20px',
             color: 'pryColor',

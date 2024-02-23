@@ -25,8 +25,6 @@ const UserProfile = () => {
                 <Icon as={FaUserCircle} fontSize='24px' />
             </MenuButton>
             <MenuList>
-                <MenuItem>Download</MenuItem>
-
                 <MenuItem onClick={() => handleLogout()}>Sign Out</MenuItem>
             </MenuList>
         </Menu>

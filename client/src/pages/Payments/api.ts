@@ -7,10 +7,8 @@ export const requestPayment = async (payload: IRequestPaymentPayload) => {
     return res.data?.data || res.data
 }
 
-export const transferMoney = async (payload: ITransferMoneyPayload) => {
-    const res = await axiosInstance.post('/transfer/payment', {
-        chimoneys: payload,
-    })
+export const transferMoney = async (payload: ITransferMoneyPayload[]) => {
+    const res = await axiosInstance.post('/transfer/payment', payload)
     return res.data?.data || res.data
 }
 
@@ -24,6 +22,6 @@ export const useRequestPayment = () => {
 export const useTransferMoney = () => {
     return useMutation({
         mutationKey: ['/transfer/payment'],
-        mutationFn: (body: ITransferMoneyPayload) => transferMoney(body),
+        mutationFn: (body: ITransferMoneyPayload[]) => transferMoney(body),
     })
 }

@@ -23,7 +23,7 @@ export const getLocalAmountInUsd = async (req: Request, res: Response) => {
     const { amountInOriginCurrency, originCurrency } = req.query
     try {
         const response = await axiosInstance.get(
-            `/info/local-amount-in-usd?originCurrency=${originCurrency}&amountInUSD=${amountInOriginCurrency}`,
+            `/info/local-amount-in-usd?originCurrency=${originCurrency}&amountInOriginCurrency=${amountInOriginCurrency}`,
         )
         return res.status(200).json({
             data: response.data,

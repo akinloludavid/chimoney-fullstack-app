@@ -13,7 +13,6 @@ export const isAuthenticated = async (
         return res.status(401).json({ message: 'Unauthorized' })
     }
     const idToken = authHeader.split(' ')[1]
-    // const idToken = req.headers.authorization
     if (!idToken) {
         return res.status(403).send('Unauthorized')
     }
@@ -26,8 +25,9 @@ export const isAuthenticated = async (
             return res.status(401).send('Unauthorized')
         }
     } catch (error: any) {
-        return res.status(400).json({
+        return res.status(403).json({
             message: error.message,
+            error: 'Unauthorized',
         })
     }
 }

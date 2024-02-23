@@ -14,7 +14,7 @@ import {
 const router = Router()
 
 router.post(
-    '/request/payment',
+    '/initiate/payment',
     isAuthenticated,
     validatePaymentInitiation,
     initialPaymentRequest,

@@ -39,10 +39,9 @@ export const verifyPayment = async (req: Request, res: Response) => {
 }
 
 export const transferMoneyOut = async (req: Request, res: Response) => {
-    const { chimoneys } = req.body
     try {
         const response = await axiosInstance.post(`/payouts/chimoney`, {
-            chimoneys,
+            chimoneys: req.body,
         })
         return res.status(200).json({
             data: response.data,

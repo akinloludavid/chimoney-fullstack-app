@@ -1,24 +1,9 @@
-# Frontend Mentor -   Chimoney Fullstack Challenge
+# Chimoney Fullstack Challenge
 
 This is a solution to the [Fullstack Development Challenge on chimoney's community]
 This project is divided into two directories 
 - client - This is where the client side logic, UI implementation and API is integrated 
 - api - This is where all the server side code and logic resides
-
-
-## Table of contents
-
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
@@ -37,7 +22,7 @@ Users should be able to:
 ### Client Folder
 
 
-- Live Site URL: [Add live site URL here](https://chimoney-ak-test.netlify.app/)
+- Live Site URL: [https://chimoney-ak-test.netlify.app/](https://chimoney-ak-test.netlify.app/)
 
 ## My process
 
@@ -68,9 +53,9 @@ The workflow for the client side can be found in the .github/workflows/client.ym
 clone the repo: (https://github.com/akinloludavid/chimoney-fullstack-app)
 cd into the ```client``` folder
 Ensure you use Node 18 and above
-run ```npm install```
-run ```npm run dev``` to start the server locally.
-run ```npm run build``` to build the server locally.
+- run ```npm install```
+- run ```npm run dev``` to start the server locally.
+- run ```npm run build``` to build the server locally.
 
 You'd actually need some environmental variables from me to start the local server successfully
 
@@ -81,9 +66,8 @@ The site is automatically deployed on netlify when a push or pr is made to the `
 
 ### API Folder
 
-- Live Site URL: [Deployment URL](https://chimoney-fullstack-app.onrender.com/)
-
-## My process
+- Live Site URL: [https://chimoney-fullstack-app.onrender.com/](https://chimoney-fullstack-app.onrender.com/)
+Health endpoint = /health
 
 ### Built with
 
@@ -118,7 +102,7 @@ You'd actually need some environmental variables from me to start the local serv
 
 
 ## Deployment
-The site is automatically deployed on netlify when a push or pr is made to the ``main`` branch
+The site is automatically deployed on render when a push or pr is made to the ``main`` branch
 
 
 ## Author

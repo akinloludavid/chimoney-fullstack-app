@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import { CONFIG } from './config/config'
@@ -10,7 +10,6 @@ import transactionRouter from './routes/transaction'
 import ratesRouter from './routes/rates'
 
 import { connectDB } from './database/db'
-import { decryptData } from './utils/encryptions'
 import decryptMiddleware from './middleware/decryptMiddleware'
 
 const app = express()

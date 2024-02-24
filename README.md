@@ -19,7 +19,7 @@ Users should be able to:
 - Transfer money
 
 
-### Client Folder
+## Client Folder
 
 
 - Live Site URL: [https://chimoney-ak-test.netlify.app/](https://chimoney-ak-test.netlify.app/)
@@ -51,8 +51,8 @@ The workflow for the client side can be found in the .github/workflows/client.ym
 ### How To Run Locally
 
 clone the repo: (https://github.com/akinloludavid/chimoney-fullstack-app)
-cd into the ```client``` folder
-Ensure you use Node 18 and above
+- cd into the ```client``` folder
+- Ensure you use Node 18 and above
 - run ```npm install```
 - run ```npm run dev``` to start the server locally.
 - run ```npm run build``` to build the server locally.
@@ -64,7 +64,7 @@ The site is automatically deployed on netlify when a push or pr is made to the `
 
 
 
-### API Folder
+## API Folder
 
 - Live Site URL: [https://chimoney-fullstack-app.onrender.com/](https://chimoney-fullstack-app.onrender.com/)
 Health endpoint = /health
@@ -91,12 +91,12 @@ The workflow for the client side can be found in the .github/workflows/apu.yml
 
 ### How To Run Locally
 
-clone the repo: (https://github.com/akinloludavid/chimoney-fullstack-app)
-cd into the ```api``` folder
-Ensure you use Node 18 and above
-run ```npm install```
-run ```npm run dev``` to start the server locally.
-run ```npm run build``` to build the server locally.
+- clone the repo: (https://github.com/akinloludavid/chimoney-fullstack-app)
+- cd into the ```api``` folder
+- Ensure you use Node 18 and above
+- run ```npm install```
+- run ```npm run dev``` to start the server locally.
+- run ```npm run build``` to build the server locally.
 
 You'd actually need some environmental variables from me to start the local server successfully
 

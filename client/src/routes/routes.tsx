@@ -14,7 +14,6 @@ import {
     TRANSACTIONS,
 } from './pathnames'
 
-const HomePage = WithSuspense(lazy(() => import('../pages/Home')))
 const SignUpPage = WithSuspense(lazy(() => import('../pages/Signup')))
 const LoginPage = WithSuspense(lazy(() => import('../pages/Login')))
 const TransactionsPage = WithSuspense(
@@ -25,7 +24,7 @@ const RatesPage = WithSuspense(lazy(() => import('../pages/Rates')))
 const DashboardPage = WithSuspense(lazy(() => import('../pages/Dashboard')))
 
 export const PublicRoutes: IAppRoute[] = [
-    { path: HOME, element: <HomePage /> },
+    { path: HOME, element: <Navigate to={LOGIN_PAGE} /> },
     { path: SIGNUP_PAGE, element: <SignUpPage /> },
     { path: LOGIN_PAGE, element: <LoginPage /> },
 

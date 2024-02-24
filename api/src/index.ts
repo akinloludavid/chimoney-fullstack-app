@@ -8,6 +8,7 @@ import paymentRouter from './routes/payment'
 import walletRouter from './routes/wallet'
 import transactionRouter from './routes/transaction'
 import ratesRouter from './routes/rates'
+import healthRoute from './routes/health'
 
 import { connectDB } from './database/db'
 import decryptMiddleware from './middleware/decryptMiddleware'
@@ -30,7 +31,9 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig)
 connectDB()
+app.use('', healthRoute)
 app.use(decryptMiddleware)
+
 app.use('/v1', authRouter)
 app.use('/v1', paymentRouter)
 app.use('/v1', walletRouter)

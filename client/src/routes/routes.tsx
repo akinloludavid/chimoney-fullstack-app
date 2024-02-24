@@ -27,7 +27,6 @@ export const PublicRoutes: IAppRoute[] = [
     { path: HOME, element: <Navigate to={LOGIN_PAGE} /> },
     { path: SIGNUP_PAGE, element: <SignUpPage /> },
     { path: LOGIN_PAGE, element: <LoginPage /> },
-
     { path: '*', element: <Navigate to={LOGIN_PAGE} /> },
 ]
 
@@ -36,7 +35,6 @@ export const PrivateRoutes: IAppRoute[] = [
     { path: TRANSACTIONS, element: <TransactionsPage /> },
     { path: PAYMENTS, element: <PaymentsPage /> },
     { path: RATES, element: <RatesPage /> },
-
     { path: '*', element: <Navigate to={DASHBOARD} /> },
 ]
 

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
     Heading,
-    Input,
     Button,
     Box,
     Flex,
@@ -27,7 +28,7 @@ const SignUp = () => {
         email: '',
         password: '',
     }
-    const { successToast, errorToast } = useCustomToast()
+    const { errorToast } = useCustomToast()
     const { mutate, isPending: isCreateAccountLoading } = useCreateAccount()
     const onSubmit = (values: ISignUpPayload) => {
         mutate(values, {
@@ -125,3 +126,4 @@ const SignUp = () => {
 }
 
 export default SignUp
+/* eslint-disable @typescript-eslint/no-explicit-any */

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     Button,
     Flex,
@@ -9,14 +10,12 @@ import {
     Tbody,
     Td,
     Text,
-    Tfoot,
     Th,
     Thead,
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/react'
-import { useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { LazyLoader } from '../../components/WithSuspense'
@@ -37,7 +36,8 @@ const Dashboard = () => {
         return <LazyLoader />
     }
     if (error) {
-        return errorToast(error?.message || 'Error occurred')
+        errorToast(error?.message || 'Error occurred')
+        return <></>
     }
     return (
         <Flex flexDir={'column'} gap='48px'>
@@ -148,3 +148,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+/* eslint-disable @typescript-eslint/no-explicit-any */

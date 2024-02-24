@@ -1,6 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 import React from 'react'
-import * as Yup from 'yup'
-import { transferMoneySchema } from '../utils/validations'
 export interface IAppRoute {
     path: string
     element: React.ReactNode

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { IconButton, Flex, Button } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
@@ -155,3 +157,5 @@ const MakePayment = ({
 }
 
 export default MakePayment
+
+/* eslint-disable @typescript-eslint/no-explicit-any */

@@ -20,7 +20,10 @@ const Payments = () => {
     const { mutate: initiatePaymentRequest, isPending: isRequestingPayment } =
         useRequestPayment()
     const handleSubmit = () => {
-        const payload = { ...values, valueInUSD: Number(values.valueInUSD) }
+        const payload = {
+            payerEmail: values.payerEmail,
+            valueInUSD: Number(values.valueInUSD),
+        }
         initiatePaymentRequest(payload, {
             onSuccess: res => {
                 setPaymentLink(res?.data?.paymentLink)

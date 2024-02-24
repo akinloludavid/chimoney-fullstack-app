@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { StyleFunctionProps } from '@chakra-ui/react'
 
 export const ButtonStyles = {
@@ -10,23 +12,7 @@ export const ButtonStyles = {
     sizes: {},
     // styles for different visual variants ("outline", "solid")
     variants: {
-        largePrimary: (props: StyleFunctionProps) => ({
-            bg: 'pryColor',
-            fontSize: '15px',
-            fontWeight: '700',
-            lineHeight: '19px',
-            borderRadius: '24px',
-            color: 'white',
-            width: '255px',
-            height: '48px',
-            _hover: {
-                bg: '#A8A4FF',
-            },
-            '@media (max-width:480px)': {
-                width: 'full',
-            },
-        }),
-        primary: (props: StyleFunctionProps) => ({
+        primary: () => ({
             bg: 'pryColor',
             fontSize: '15px',
             fontWeight: '500',
@@ -64,7 +50,7 @@ export const ButtonStyles = {
                 width: 'full',
             },
         }),
-        danger: (props: any) => ({
+        danger: () => ({
             bg: 'danger',
             fontSize: '15px',
             fontWeight: '700',
@@ -113,3 +99,5 @@ export const ButtonStyles = {
         variant: 'primary',
     },
 }
+
+/* eslint-disable @typescript-eslint/no-explicit-any */

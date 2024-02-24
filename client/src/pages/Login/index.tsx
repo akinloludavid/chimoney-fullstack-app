@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
     Box,
     Button,
@@ -122,3 +124,5 @@ const Login = () => {
 }
 
 export default Login
+
+/* eslint-disable @typescript-eslint/no-explicit-any */

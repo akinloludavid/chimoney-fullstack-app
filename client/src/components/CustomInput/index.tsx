@@ -1,7 +1,7 @@
 import { Input, InputGroup, InputProps, Text } from '@chakra-ui/react'
 
 interface ICustomInput extends InputProps {
-    error?: string
+    error: string
 }
 
 const CustomInput = ({ error, ...rest }: ICustomInput) => {
@@ -12,7 +12,6 @@ const CustomInput = ({ error, ...rest }: ICustomInput) => {
                 <Text
                     top='50%'
                     right='4%'
-                    cursor='pointer'
                     transform='translateY(-50%)'
                     position='absolute'
                     hidden={!error}

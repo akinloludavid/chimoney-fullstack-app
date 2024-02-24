@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import axios, {
     AxiosInstance,
     AxiosResponse,
@@ -7,7 +9,6 @@ import axios, {
 import { USER_AUTH_KEY } from '../config/config'
 import { LOGIN_PAGE } from '../routes/pathnames'
 import { userInfo } from '../utils/helpers'
-import { useCustomToast } from '../utils/toast'
 import { baseUrl } from './config'
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -37,8 +38,6 @@ const onResponseError = async (error: AxiosError) => {
     const statusCode = error.response!.status
     const originalRequest: any = error.config
     if (statusCode === 403 && userInfo) {
-        const { errorToast } = useCustomToast()
-        errorToast('Token expired. Kindly login again')
         localStorage.removeItem(USER_AUTH_KEY)
         setTimeout(() => {
             window.location.href = LOGIN_PAGE
@@ -52,3 +51,5 @@ axiosInstance.interceptors.request.use(onRequest, onRequestError)
 axiosInstance.interceptors.response.use(onResponse, onResponseError)
 
 export default axiosInstance
+
+/* eslint-disable @typescript-eslint/no-explicit-any */

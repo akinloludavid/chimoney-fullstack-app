@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ENCRYPTION_KEY } from '../api/config'
 import { USER_AUTH_KEY } from '../config/config'
 import CryptoJS, { AES } from 'crypto-js'

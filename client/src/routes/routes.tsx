@@ -1,8 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import WithSuspense from '../components/WithSuspense'
-import Dashboard from '../pages/Dashboard'
-import Transaction from '../pages/Transactions'
 import { IAppRoute } from '../types'
 import {
     DASHBOARD,
@@ -22,6 +22,7 @@ const TransactionsPage = WithSuspense(
 )
 const PaymentsPage = WithSuspense(lazy(() => import('../pages/Payments')))
 const RatesPage = WithSuspense(lazy(() => import('../pages/Rates')))
+const DashboardPage = WithSuspense(lazy(() => import('../pages/Dashboard')))
 
 export const PublicRoutes: IAppRoute[] = [
     { path: HOME, element: <HomePage /> },
@@ -32,10 +33,12 @@ export const PublicRoutes: IAppRoute[] = [
 ]
 
 export const PrivateRoutes: IAppRoute[] = [
-    { path: DASHBOARD, element: <Dashboard /> },
-    { path: TRANSACTIONS, element: <Transaction /> },
+    { path: DASHBOARD, element: <DashboardPage /> },
+    { path: TRANSACTIONS, element: <TransactionsPage /> },
     { path: PAYMENTS, element: <PaymentsPage /> },
     { path: RATES, element: <RatesPage /> },
 
     { path: '*', element: <Navigate to={DASHBOARD} /> },
 ]
+
+/* eslint-disable react-refresh/only-export-components */

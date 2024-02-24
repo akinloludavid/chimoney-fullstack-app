@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { StyleFunctionProps } from '@chakra-ui/react'
 
 const primary = (props: StyleFunctionProps) => ({
@@ -24,7 +25,7 @@ const primary = (props: StyleFunctionProps) => ({
     },
 })
 
-const danger = (props: StyleFunctionProps) => ({
+const danger = () => ({
     field: {
         borderRadius: '4px',
         border: '2px solid #ea5555',

@@ -1,8 +1,6 @@
 import {
     Box,
     Flex,
-    Image,
-    useColorMode,
     useColorModeValue,
 } from '@chakra-ui/react'
 import ColorModeToggle from '../../components/ColorModeToggle'
@@ -10,7 +8,6 @@ import Logo from '../../components/Logo'
 import { IChildren } from '../../types'
 
 const AuthContainer = ({ children }: IChildren) => {
-    const { colorMode } = useColorMode()
     const formBg = useColorModeValue('light.secBg', 'dark.secBg')
     return (
         <Box>

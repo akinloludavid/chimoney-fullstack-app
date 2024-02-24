@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
     Box,
     Heading,
@@ -25,7 +27,8 @@ const Transaction = () => {
         return <TableLoader />
     }
     if (error) {
-        return errorToast(error?.message || 'Error occurred')
+        errorToast(error?.message || 'Error occurred')
+        return <></>
     }
     return (
         <Box>
@@ -77,3 +80,4 @@ const Transaction = () => {
 }
 
 export default Transaction
+/* eslint-disable @typescript-eslint/no-explicit-any */

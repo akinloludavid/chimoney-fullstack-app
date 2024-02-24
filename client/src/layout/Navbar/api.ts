@@ -14,7 +14,7 @@ export const useAccountLogout = () => {
     return useMutation({
         mutationFn: accountLogout,
         mutationKey: ['/auth/logout'],
-        onSuccess: res => {
+        onSuccess: () => {
             localStorage.removeItem(USER_AUTH_KEY)
             successToast('Logout successful')
             setTimeout(() => {

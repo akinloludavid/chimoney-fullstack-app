@@ -1,4 +1,6 @@
-import { Flex, Heading, Spinner } from '@chakra-ui/react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Flex, Spinner } from '@chakra-ui/react'
 import React, { Suspense } from 'react'
 
 export const LazyLoader = () => {
@@ -17,3 +19,4 @@ const WithSuspense = (Component: React.FC) => (props: any) => {
 }
 
 export default WithSuspense
+/* eslint-disable @typescript-eslint/no-explicit-any */

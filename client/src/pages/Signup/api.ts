@@ -22,7 +22,7 @@ export const useCreateAccount = () => {
         mutationKey: ['/auth/signup'],
         onSuccess: res => {
             setLocalStorage(USER_AUTH_KEY, res.data)
-            successToast('Login successful')
+            successToast('Sign up successful')
             setTimeout(() => {
                 window.location.href = DASHBOARD
             }, 2000)

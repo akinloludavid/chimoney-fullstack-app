@@ -1,13 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import axiosInstance from '../../api'
+import { decryptData } from '../../utils/helpers'
 
 export const getWallets = async () => {
     const res = await axiosInstance.get(`/wallets`)
-    return res.data?.data || res.data
+    return decryptData(res.data?.data || res.data)
 }
 export const getTransactions = async () => {
     const res = await axiosInstance.get(`/transactions`)
-    return res.data?.data || res.data
+    return decryptData(res.data?.data || res.data)
 }
 
 export const useGetWallets = () => {

@@ -5,11 +5,7 @@ import { FaClipboard } from 'react-icons/fa'
 import CustomInput from '../../components/CustomInput'
 import ModalContainer from '../../components/ModalContainer'
 import { useCustomToast } from '../../utils/toast'
-import {
-    requestPaymentSchema,
-    transferMoneySchema,
-    useCustomFormik,
-} from '../../utils/validations'
+import { requestPaymentSchema, useCustomFormik } from '../../utils/validations'
 import { useRequestPayment } from './api'
 import MakePayment from './MakePayment'
 
@@ -24,7 +20,8 @@ const Payments = () => {
     const { mutate: initiatePaymentRequest, isPending: isRequestingPayment } =
         useRequestPayment()
     const handleSubmit = () => {
-        initiatePaymentRequest(values, {
+        const payload = { ...values, valueInUSD: Number(values.valueInUSD) }
+        initiatePaymentRequest(payload, {
             onSuccess: res => {
                 setPaymentLink(res?.data?.paymentLink)
                 successToast(`Payment request successful`)
@@ -37,7 +34,7 @@ const Payments = () => {
     }
     const initialRequestValues = {
         payerEmail: '',
-        valueInUSD: 0,
+        valueInUSD: '',
     }
 
     const {
@@ -60,7 +57,10 @@ const Payments = () => {
             <ModalContainer
                 title='Initiate Payment Request'
                 isOpen={showInitiatePaymentModal}
-                onClose={() => setShowInitiatePaymentModal(false)}
+                onClose={() => {
+                    setShowInitiatePaymentModal(false)
+                    setPaymentLink('')
+                }}
             >
                 <Flex flexDirection={'column'} gap='32px' py='24px'>
                     <CustomInput
@@ -121,14 +121,14 @@ const Payments = () => {
                 isOpen={showTransferModal}
                 onClose={() => setShowTransferModal(false)}
             />
-            <Flex gap='36px' flexDir={['column', 'column', 'row']}>
+            <Flex gap='36px' flexDir={['column', 'row', 'row']}>
                 <Flex
                     flexDir={'column'}
                     gap='48px'
                     borderRadius='8px'
                     bg={boxBg}
                     p='24px'
-                    maxW='240px'
+                    w={['100%','10%%','240px']}
                 >
                     <Text>
                         Request Payment From both Users or Non users of Chimoney{' '}
@@ -147,7 +147,7 @@ const Payments = () => {
                     borderRadius='8px'
                     bg={boxBg}
                     p='24px'
-                    maxW='240px'
+                    w={['100%','10%%','240px']}
                 >
                     <Text>
                         Transfer Money To both Users or Non users of Chimoney{' '}

@@ -2,13 +2,16 @@ import axios from 'axios'
 import { useMutation } from '@tanstack/react-query'
 import { baseUrl } from '../../api/config'
 import { USER_AUTH_KEY } from '../../config/config'
-import { DASHBOARD, LOGIN_PAGE } from '../../routes/pathnames'
+import { DASHBOARD } from '../../routes/pathnames'
 import { ILoginPayload } from '../../types'
-import { setLocalStorage } from '../../utils/helpers'
+import { encryptData, setLocalStorage } from '../../utils/helpers'
 import { useCustomToast } from '../../utils/toast'
 
 export const accountLogin = async (payload: ILoginPayload) => {
-    const response = await axios.post(`${baseUrl}/auth/login`, payload)
+    const encryptedData = {
+        encryptedData: encryptData(payload),
+    }
+    const response = await axios.post(`${baseUrl}/auth/login`, encryptedData)
     return response
 }
 

@@ -16,28 +16,36 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/react'
-import React from 'react'
+import { useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { LazyLoader } from '../../components/WithSuspense'
 import { TRANSACTIONS } from '../../routes/pathnames'
+import { useCustomToast } from '../../utils/toast'
 import { useGetTransactions, useGetWallets } from './api'
 
 const Dashboard = () => {
     const navigate = useNavigate()
-    const { isPending: isLoadingBalance, data } = useGetWallets()
+    const { isPending: isLoadingBalance, data, error } = useGetWallets()
     const { isPending: isLoadingTransactions, data: transactions } =
         useGetTransactions()
-
     const wallets = data?.data
     const transactionsData = transactions?.data
     const cardsBg = useColorModeValue('light.secBg', 'dark.secBg')
+    const { errorToast } = useCustomToast()
     if (isLoadingBalance || isLoadingTransactions) {
         return <LazyLoader />
     }
+    if (error) {
+        return errorToast(error?.message || 'Error occurred')
+    }
     return (
         <Flex flexDir={'column'} gap='48px'>
-            <Box p={['36px']} borderRadius='8px' bgColor={cardsBg}>
+            <Box
+                p={['18px', '24px', '36px']}
+                borderRadius='8px'
+                bgColor={cardsBg}
+            >
                 <Heading variant={'h1'} mb='24px'>
                     Your Wallets Balance
                 </Heading>
@@ -65,14 +73,24 @@ const Dashboard = () => {
                                 {wallet.type}
                             </Text>
                             <Text fontSize={['24px']} fontWeight='600'>
-                                ${wallet?.balance.toLocaleString()}
+                                {wallet?.balance.toLocaleString()}
                             </Text>
                         </Flex>
                     ))}
                 </Grid>
             </Box>
-            <Box p={['36px']} borderRadius='8px' bgColor={cardsBg}>
-                <Flex align={'center'} justify='space-between' mb='24px'>
+            <Box
+                p={['18px', '24px', '36px']}
+                borderRadius='8px'
+                bgColor={cardsBg}
+            >
+                <Flex
+                    flexDir={['column', 'column', 'row']}
+                    align={'center'}
+                    justify='space-between'
+                    gap='8px'
+                    mb='24px'
+                >
                     <Heading variant={'h1'}>Your Recent Transactions</Heading>
                     <Button
                         onClick={() => navigate(TRANSACTIONS)}
@@ -99,6 +117,9 @@ const Dashboard = () => {
                         </Thead>
                         <Tbody>
                             {transactionsData
+                                ?.sort((a: any, b: any) =>
+                                    a.issueDate < b.issueDate ? 1 : -1,
+                                )
                                 ?.slice(0, 3)
                                 ?.map((transaction: any) => (
                                     <Tr key={transaction?.id}>

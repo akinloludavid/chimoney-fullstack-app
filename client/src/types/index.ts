@@ -38,3 +38,8 @@ export interface ITransferMoneyPayload {
         interledgerWalletAddress?: string
     }
 }
+
+export interface IDrawer {
+    isOpen: boolean
+    onClose: () => void
+}

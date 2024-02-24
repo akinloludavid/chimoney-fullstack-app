@@ -39,12 +39,19 @@ const Login = () => {
             },
         })
     }
-    const { values, handleChange, handleBlur, touched, errors, dirty } =
-        useCustomFormik<ILoginPayload>({
-            initialValues,
-            validationSchema: loginSchema,
-            onSubmit,
-        })
+    const {
+        values,
+        handleChange,
+        handleBlur,
+        touched,
+        errors,
+        dirty,
+        isValid,
+    } = useCustomFormik<ILoginPayload>({
+        initialValues,
+        validationSchema: loginSchema,
+        onSubmit,
+    })
     return (
         <Box>
             <AuthContainer>
@@ -88,7 +95,7 @@ const Login = () => {
                 </InputGroup>
                 <Button
                     isLoading={isLoginLoading}
-                    isDisabled={!dirty || Object.keys(errors).length > 0}
+                    isDisabled={!dirty || !isValid}
                     w='full'
                     _hover={{
                         bgColor: 'secColor',

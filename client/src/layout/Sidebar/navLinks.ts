@@ -1,4 +1,4 @@
-import { MdDashboard, MdPayments, MdMoney } from 'react-icons/md'
+import { MdDashboard, MdPayments } from 'react-icons/md'
 
 import { FaMoneyBillTransfer } from 'react-icons/fa6'
 
@@ -17,10 +17,5 @@ export const navLinks = [
         label: 'Payments',
         route: '/payments',
         icon: MdPayments,
-    },
-    {
-        label: 'Rates',
-        route: '/rates',
-        icon: MdMoney,
     },
 ]

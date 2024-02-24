@@ -41,7 +41,9 @@ export const requestPaymentSchema = Yup.object({
     payerEmail: Yup.string()
         .required('Please provide your email')
         .email('Invalid email'),
-    valueInUSD: Yup.number().required('Please provide the request amount'),
+    valueInUSD: Yup.string()
+        .required('Please enter amount')
+        .matches(/[0-9]/, 'Invalid amount'),
 })
 
 export const transferMoneySchema = Yup.array().of(

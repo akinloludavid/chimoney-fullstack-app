@@ -1,8 +1,8 @@
-import { Button, Icon, Link, useColorModeValue } from '@chakra-ui/react'
-import { Box, Flex } from '@chakra-ui/react'
+import { Button, Icon, useColorModeValue } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import Logo from '../../components/Logo'
 import { navLinks } from './navLinks'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { isNavActive } from '../../utils/helpers'
 const Sidebar = () => {
     const sideBarBg = useColorModeValue('light.secBg', 'dark.secBg')
@@ -18,6 +18,7 @@ const Sidebar = () => {
             bgColor={sideBarBg}
             p={['12px']}
             pt={['24px']}
+            display={['none', 'none', 'block']}
         >
             <Logo />
             <Flex flexDir={'column'} mt={[24]} gap={['32px']}>

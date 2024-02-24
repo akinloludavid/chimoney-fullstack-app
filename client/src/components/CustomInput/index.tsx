@@ -17,6 +17,7 @@ const CustomInput = ({ error, ...rest }: ICustomInput) => {
                     position='absolute'
                     hidden={!error}
                     as='small'
+                    variant={'danger'}
                     color='danger'
                 >
                     {error}

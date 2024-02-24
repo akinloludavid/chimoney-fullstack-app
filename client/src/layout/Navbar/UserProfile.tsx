@@ -5,13 +5,17 @@ import {
     MenuList,
     MenuItem,
     Icon,
+    Text,
 } from '@chakra-ui/react'
 import { IoChevronDownOutline } from 'react-icons/io5'
 import { FaUserCircle } from 'react-icons/fa'
 import { useAccountLogout } from './api'
+import { userInfo } from '../../utils/helpers'
+import { Flex } from '@chakra-ui/react'
 
 const UserProfile = () => {
-    const { mutate: handleLogout, isPending } = useAccountLogout()
+    const { mutate: handleLogout } = useAccountLogout()
+    const username = userInfo?.user?.email?.split('@')[0]
     return (
         <Menu>
             <MenuButton
@@ -22,7 +26,10 @@ const UserProfile = () => {
                 rightIcon={<IoChevronDownOutline />}
                 px='4px'
             >
-                <Icon as={FaUserCircle} fontSize='24px' />
+                <Flex gap='8px' align={'center'}>
+                    <Icon as={FaUserCircle} fontSize='24px' />
+                    <Text>{username}</Text>
+                </Flex>
             </MenuButton>
             <MenuList>
                 <MenuItem onClick={() => handleLogout()}>Sign Out</MenuItem>

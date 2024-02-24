@@ -1,11 +1,12 @@
 import { Request, Response } from 'express'
 import axiosInstance from '../config/axios'
+import { encryptData } from '../utils/encryptions'
 
 export const getAllWallets = async (req: Request, res: Response) => {
     try {
         const response = await axiosInstance.post(`/wallets/list`)
         return res.status(200).json({
-            data: response.data,
+            data: encryptData(response.data),
             status: 'success',
         })
     } catch (error: any) {
@@ -22,7 +23,7 @@ export const getAllWalletById = async (req: Request, res: Response) => {
             walletID: req.params.id,
         })
         return res.status(200).json({
-            data: response.data,
+            data: encryptData(response.data),
             status: 'success',
         })
     } catch (error: any) {
@@ -41,7 +42,7 @@ export const transferBetweenWallets = async (req: Request, res: Response) => {
             valueInUSD,
         })
         return res.status(200).json({
-            data: response.data,
+            data: encryptData(response.data),
             status: 'success',
         })
     } catch (error: any) {

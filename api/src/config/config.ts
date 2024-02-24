@@ -17,7 +17,7 @@ const SERVICE_NAME = process.env.SERVICE_NAME || 'Microservice'
 const LOG_LEVEL = process.env.LOG_LEVEL || 'info'
 const CHIMONEY_URL = process.env.CHIMONEY_URL || ''
 const CHIMONEY_API_KEY = process.env.CHIMONEY_API_KEY || ''
-
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || ''
 // this will contain global configs for the project
 export const CONFIG: ProjectConfiguration = {
     DATABASE: {
@@ -36,4 +36,5 @@ export const CONFIG: ProjectConfiguration = {
     SERVICE_NAME,
     LOG_LEVEL,
     JWT_SECRET_KEY,
+    ENCRYPTION_KEY,
 }

@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import { CONFIG } from './config/config'
@@ -10,6 +10,8 @@ import transactionRouter from './routes/transaction'
 import ratesRouter from './routes/rates'
 
 import { connectDB } from './database/db'
+import { decryptData } from './utils/encryptions'
+import decryptMiddleware from './middleware/decryptMiddleware'
 
 const app = express()
 const PORT = CONFIG.SERVER.PORT
@@ -29,13 +31,12 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig)
 connectDB()
+app.use(decryptMiddleware)
 app.use('/v1', authRouter)
 app.use('/v1', paymentRouter)
 app.use('/v1', walletRouter)
 app.use('/v1', transactionRouter)
 app.use('/v1', ratesRouter)
-
-
 
 app.listen(PORT, () => {
     if (process.env.NODE_ENV !== 'production')

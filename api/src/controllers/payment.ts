@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import axiosInstance from '../config/axios'
+import { encryptData } from '../utils/encryptions'
 
 export const initialPaymentRequest = async (req: Request, res: Response) => {
     const { payerEmail, valueInUSD } = req.body
@@ -9,7 +10,7 @@ export const initialPaymentRequest = async (req: Request, res: Response) => {
             valueInUSD,
         })
         return res.status(200).json({
-            data: response.data,
+            data: encryptData(response.data),
             status: 'success',
         })
     } catch (error: any) {
@@ -27,7 +28,7 @@ export const verifyPayment = async (req: Request, res: Response) => {
             id: paymentId,
         })
         return res.status(200).json({
-            data: response.data,
+            data: encryptData(response.data),
             status: 'success',
         })
     } catch (error: any) {
@@ -39,12 +40,13 @@ export const verifyPayment = async (req: Request, res: Response) => {
 }
 
 export const transferMoneyOut = async (req: Request, res: Response) => {
+    console.log(req.body)
     try {
         const response = await axiosInstance.post(`/payouts/chimoney`, {
             chimoneys: req.body,
         })
         return res.status(200).json({
-            data: response.data,
+            data: encryptData(response.data),
             status: 'success',
         })
     } catch (error: any) {

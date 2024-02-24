@@ -16,4 +16,5 @@ export type ProjectConfiguration = {
         API_KEY: string
     }
     JWT_SECRET_KEY: string
+    ENCRYPTION_KEY: string
 }

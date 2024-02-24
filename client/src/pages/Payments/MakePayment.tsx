@@ -74,8 +74,8 @@ const MakePayment = ({
         >
             <IconButton
                 variant={'secondary'}
-                width='fit-content'
                 icon={<FaPlus />}
+                maxW='fit-content'
                 aria-label='add'
                 onClick={() =>
                     setPayeeLists((prev: any) => [
@@ -135,7 +135,7 @@ const MakePayment = ({
                     <IconButton
                         hidden={payeeLists.length === 1}
                         variant={'danger'}
-                        width='fit-content'
+                        maxW='fit-content'
                         icon={<FaMinus />}
                         aria-label='add'
                         onClick={() => handleRemovePayee(idx)}

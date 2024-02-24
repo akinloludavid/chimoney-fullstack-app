@@ -126,7 +126,11 @@ const Dashboard = () => {
                                         <Td>
                                             {new Date(
                                                 transaction?.issueDate,
-                                            ).toDateString()}
+                                            ).toDateString() +
+                                                ' ' +
+                                                new Date(
+                                                    transaction?.issueDate,
+                                                ).toLocaleTimeString()}
                                         </Td>
                                         <Td>{transaction?.type}</Td>
                                         <Td isNumeric>

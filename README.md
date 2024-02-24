@@ -12,11 +12,12 @@ This project is divided into two directories
 
 Users should be able to:
 
-- Signup and login
+- Signup, login and logout securely
 - View wallet balance
 - Get transactions history
 - Request Payment
 - Transfer money
+- Security measures - data encryption
 
 
 ## Client Folder
@@ -81,8 +82,9 @@ Health endpoint = /health
 
 ### What I learned
 
-One thing i learned while working on this project is how to encrypt and decrypt data between the client and server.
+- One thing i learned while working on this project is how to encrypt and decrypt data between the client and server.
 I also learnt how to encrypt user data in local storage.
+- I also learnt how use firebase-admin on the backend
 
 
 ### CI/CD

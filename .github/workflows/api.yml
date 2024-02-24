@@ -1,0 +1,27 @@
+name: chimoney-task-api
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main,dev]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          path: api
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./api  # Specify the directory for this step
+
+      - name: check formatting
+        run: npm run lint
+        working-directory: ./api  # Specify the directory for this step
+
+      - name: build api
+        run: npm run build
+        working-directory: ./api

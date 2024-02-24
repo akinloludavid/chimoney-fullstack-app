@@ -1,0 +1,27 @@
+name: chimoney-task-client
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main,dev]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          path: client
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./client  # Specify the directory for this step
+
+      - name: check formatting
+        run: npm run lint
+        working-directory: ./client  # Specify the directory for this step
+
+      - name: build client
+        run: npm run build
+        working-directory: ./client

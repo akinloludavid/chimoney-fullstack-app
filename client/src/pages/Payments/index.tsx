@@ -93,7 +93,7 @@ const Payments = () => {
                     <Flex hidden={!paymentLink} align='center' gap='8px'>
                         <Icon
                             as={FaClipboard}
-                            color='pryColor'
+                            color='secColor'
                             cursor={'pointer'}
                             onClick={() =>
                                 navigator.clipboard
@@ -103,7 +103,11 @@ const Payments = () => {
                                     })
                             }
                         />
-                        <Link href={paymentLink} target='_blank'>
+                        <Link
+                            textDecoration={'underline'}
+                            href={paymentLink}
+                            target='_blank'
+                        >
                             Payment Link
                         </Link>
                     </Flex>
@@ -131,7 +135,7 @@ const Payments = () => {
                     borderRadius='8px'
                     bg={boxBg}
                     p='24px'
-                    w={['100%','10%%','240px']}
+                    w={['100%', '10%%', '240px']}
                 >
                     <Text>
                         Request Payment From both Users or Non users of Chimoney{' '}
@@ -150,7 +154,7 @@ const Payments = () => {
                     borderRadius='8px'
                     bg={boxBg}
                     p='24px'
-                    w={['100%','10%%','240px']}
+                    w={['100%', '10%%', '240px']}
                 >
                     <Text>
                         Transfer Money To both Users or Non users of Chimoney{' '}

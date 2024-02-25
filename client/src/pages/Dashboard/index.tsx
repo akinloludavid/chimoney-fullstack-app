@@ -18,6 +18,7 @@ import {
 import { Box } from '@chakra-ui/react'
 import { FaArrowRight } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { TableLoader } from '../../components/Loaders'
 import { LazyLoader } from '../../components/WithSuspense'
 import { TRANSACTIONS } from '../../routes/pathnames'
 import { useCustomToast } from '../../utils/toast'
@@ -32,7 +33,7 @@ const Dashboard = () => {
     const transactionsData = transactions?.data
     const cardsBg = useColorModeValue('light.secBg', 'dark.secBg')
     const { errorToast } = useCustomToast()
-    if (isLoadingBalance || isLoadingTransactions) {
+    if (isLoadingBalance) {
         return <LazyLoader />
     }
     if (error) {
@@ -79,74 +80,83 @@ const Dashboard = () => {
                     ))}
                 </Grid>
             </Box>
-            <Box
-                p={['18px', '24px', '36px']}
-                borderRadius='8px'
-                bgColor={cardsBg}
-            >
-                <Flex
-                    flexDir={['column', 'column', 'row']}
-                    align={'center'}
-                    justify='space-between'
-                    gap='8px'
-                    mb='24px'
+            {isLoadingTransactions ? (
+                <TableLoader />
+            ) : (
+                <Box
+                    p={['18px', '24px', '36px']}
+                    borderRadius='8px'
+                    bgColor={cardsBg}
                 >
-                    <Heading variant={'h1'}>Your Recent Transactions</Heading>
-                    <Button
-                        onClick={() => navigate(TRANSACTIONS)}
-                        variant={'secondary'}
-                        w='fit-content'
-                        rightIcon={<FaArrowRight />}
+                    <Flex
+                        flexDir={['column', 'column', 'row']}
+                        align={'center'}
+                        justify='space-between'
+                        gap='8px'
+                        mb='24px'
                     >
-                        All Transactions
-                    </Button>
-                </Flex>
+                        <Heading variant={'h1'}>
+                            Your Recent Transactions
+                        </Heading>
+                        <Button
+                            onClick={() => navigate(TRANSACTIONS)}
+                            variant={'secondary'}
+                            w='fit-content'
+                            rightIcon={<FaArrowRight />}
+                        >
+                            All Transactions
+                        </Button>
+                    </Flex>
 
-                <TableContainer>
-                    <Table variant='striped' colorScheme='purple'>
-                        <TableCaption>Recent Transactions</TableCaption>
-                        <Thead>
-                            <Tr>
-                                <Th>Transaction Date</Th>
-                                <Th>Type</Th>
-                                <Th isNumeric>Amount (USD)</Th>
-                                <Th>Recipient</Th>
-                                <Th>Sender</Th>
-                                <Th>Status</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {transactionsData
-                                ?.sort((a: any, b: any) =>
-                                    a.issueDate < b.issueDate ? 1 : -1,
-                                )
-                                ?.slice(0, 3)
-                                ?.map((transaction: any) => (
-                                    <Tr key={transaction?.id}>
-                                        <Td>
-                                            {new Date(
-                                                transaction?.issueDate,
-                                            ).toDateString() +
-                                                ' ' +
-                                                new Date(
+                    <TableContainer>
+                        <Table variant='striped' colorScheme='purple'>
+                            <TableCaption>Recent Transactions</TableCaption>
+                            <Thead>
+                                <Tr>
+                                    <Th>Transaction Date</Th>
+                                    <Th>Type</Th>
+                                    <Th isNumeric>Amount (USD)</Th>
+                                    <Th>Recipient</Th>
+                                    <Th>Sender</Th>
+                                    <Th>Status</Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                {transactionsData
+                                    ?.sort((a: any, b: any) =>
+                                        a.issueDate < b.issueDate ? 1 : -1,
+                                    )
+                                    ?.slice(0, 3)
+                                    ?.map((transaction: any) => (
+                                        <Tr key={transaction?.id}>
+                                            <Td>
+                                                {new Date(
                                                     transaction?.issueDate,
-                                                ).toLocaleTimeString()}
-                                        </Td>
-                                        <Td>{transaction?.type}</Td>
-                                        <Td isNumeric>
-                                            {transaction?.valueInUSD}
-                                        </Td>
-                                        <Td>
-                                            {transaction?.redeemData?.walletID}
-                                        </Td>
-                                        <Td>{transaction?.payerEmail}</Td>
-                                        <Td>{transaction?.status}</Td>
-                                    </Tr>
-                                ))}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
-            </Box>
+                                                ).toDateString() +
+                                                    ' ' +
+                                                    new Date(
+                                                        transaction?.issueDate,
+                                                    ).toLocaleTimeString()}
+                                            </Td>
+                                            <Td>{transaction?.type}</Td>
+                                            <Td isNumeric>
+                                                {transaction?.valueInUSD}
+                                            </Td>
+                                            <Td>
+                                                {
+                                                    transaction?.redeemData
+                                                        ?.walletID
+                                                }
+                                            </Td>
+                                            <Td>{transaction?.payerEmail}</Td>
+                                            <Td>{transaction?.status}</Td>
+                                        </Tr>
+                                    ))}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+            )}
         </Flex>
     )
 }

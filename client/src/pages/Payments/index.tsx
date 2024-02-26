@@ -6,6 +6,7 @@ import CustomInput from '../../components/CustomInput'
 import ModalContainer from '../../components/ModalContainer'
 import { useCustomToast } from '../../utils/toast'
 import { requestPaymentSchema, useCustomFormik } from '../../utils/validations'
+import { useGetTransactions } from '../Transactions/api'
 import { useRequestPayment } from './api'
 import MakePayment from './MakePayment'
 
@@ -19,6 +20,7 @@ const Payments = () => {
     const [paymentLink, setPaymentLink] = useState('')
     const { mutate: initiatePaymentRequest, isPending: isRequestingPayment } =
         useRequestPayment()
+    const { refetch: refetchTransactions } = useGetTransactions()
     const handleSubmit = () => {
         const payload = {
             payerEmail: values.payerEmail,
@@ -26,6 +28,7 @@ const Payments = () => {
         }
         initiatePaymentRequest(payload, {
             onSuccess: res => {
+                refetchTransactions()
                 setPaymentLink(res?.data?.paymentLink)
                 successToast(`Payment request successful`)
                 resetForm()

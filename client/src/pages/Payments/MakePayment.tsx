@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { IconButton, Flex, Button } from '@chakra-ui/react'
-import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import CustomInput from '../../components/CustomInput'
@@ -9,6 +8,7 @@ import ModalContainer from '../../components/ModalContainer'
 import { formatYupError } from '../../utils/helpers'
 import { useCustomToast } from '../../utils/toast'
 import { transferMoneySchema } from '../../utils/validations'
+import { useGetTransactions } from '../Dashboard/api'
 import { useTransferMoney } from './api'
 
 const MakePayment = ({
@@ -37,7 +37,7 @@ const MakePayment = ({
         )
         setPayeeLists(updatedPayeeLists)
     }
-    const queryClient = useQueryClient()
+    const { refetch: refetchTransactions } = useGetTransactions()
     const handleTransferMoneySubmit = () => {
         transferMoneySchema
             .validate(payeeLists, { abortEarly: false })
@@ -51,9 +51,7 @@ const MakePayment = ({
                         onClose()
                         successToast('Transfer successful')
                         setPayeeLists(initialTransferValues)
-                        queryClient.invalidateQueries({
-                            queryKey: ['/transactions'],
-                        })
+                        refetchTransactions()
                     },
                     onError: () => {
                         errorToast('Transfer failed')

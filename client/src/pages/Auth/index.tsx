@@ -28,7 +28,7 @@ const AuthContainer = ({ children }: IChildren) => {
                 py='24px'
                 flexDir={'column'}
                 borderRadius='4px'
-                my={'120px'}
+                my={'60px'}
                 p={['8px', '24px', '48px']}
                 shadow='md'
             >

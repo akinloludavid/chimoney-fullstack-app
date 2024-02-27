@@ -8,6 +8,7 @@ export const initialPaymentRequest = async (req: Request, res: Response) => {
         const response = await axiosInstance.post(`/payment/initiate`, {
             payerEmail,
             valueInUSD,
+            subAccount: req.query.id,
         })
         return res.status(200).json({
             data: encryptData(response.data),
@@ -40,10 +41,10 @@ export const verifyPayment = async (req: Request, res: Response) => {
 }
 
 export const transferMoneyOut = async (req: Request, res: Response) => {
-    console.log(req.body)
     try {
         const response = await axiosInstance.post(`/payouts/chimoney`, {
             chimoneys: req.body,
+            subAccount: req.query.id,
         })
         return res.status(200).json({
             data: encryptData(response.data),
@@ -56,3 +57,4 @@ export const transferMoneyOut = async (req: Request, res: Response) => {
         })
     }
 }
+

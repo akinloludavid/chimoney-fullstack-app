@@ -62,7 +62,6 @@ const Dashboard = () => {
                     {wallets?.map((wallet: any) => (
                         <Flex
                             key={wallet.id}
-                            // border='1px solid grey'
                             borderRadius={'8px'}
                             p='16px'
                             gap='16px'
@@ -143,12 +142,14 @@ const Dashboard = () => {
                                                 {transaction?.valueInUSD}
                                             </Td>
                                             <Td>
-                                                {
-                                                    transaction?.redeemData
-                                                        ?.walletID
-                                                }
+                                                {transaction?.redeemData
+                                                    ?.walletID ||
+                                                    transaction?.email}
                                             </Td>
-                                            <Td>{transaction?.payerEmail}</Td>
+                                            <Td>
+                                                {transaction?.payerEmail ||
+                                                    transaction?.issuer}
+                                            </Td>
                                             <Td>{transaction?.status}</Td>
                                         </Tr>
                                     ))}

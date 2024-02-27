@@ -27,6 +27,9 @@ const SignUp = () => {
     const initialValues = {
         email: '',
         password: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
     }
     const { errorToast } = useCustomToast()
     const { mutate, isPending: isCreateAccountLoading } = useCreateAccount()
@@ -53,6 +56,42 @@ const SignUp = () => {
             <AuthContainer>
                 <Flex flexDir={'column'} gap='36px'>
                     <Heading>Create Account</Heading>
+                    <CustomInput
+                        placeholder='First Name'
+                        name='firstName'
+                        value={values.firstName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={
+                            touched.firstName && errors.firstName
+                                ? errors.firstName
+                                : ''
+                        }
+                    />
+                    <CustomInput
+                        placeholder='Last Name'
+                        name='lastName'
+                        value={values.lastName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={
+                            touched.lastName && errors.lastName
+                                ? errors.lastName
+                                : ''
+                        }
+                    />
+                    <CustomInput
+                        placeholder='Phone Number'
+                        name='phoneNumber'
+                        value={values.phoneNumber}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={
+                            touched.phoneNumber && errors.phoneNumber
+                                ? errors.phoneNumber
+                                : ''
+                        }
+                    />
                     <CustomInput
                         placeholder='Email'
                         name='email'

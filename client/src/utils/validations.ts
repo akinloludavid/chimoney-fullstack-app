@@ -30,6 +30,11 @@ export const signUpSchema = Yup.object({
         .required('Please provide your email')
         .email('Invalid email'),
     password: Yup.string().required('Please provide your password'),
+    firstName: Yup.string().required('Please provide first name'),
+    lastName: Yup.string().required('Please provide last name'),
+    phoneNumber: Yup.string()
+        .required('Please provide phone no')
+        .matches(/^\+\d{2,3}\d{9,10}$/, 'Invalid phone number'),
 })
 
 export const loginSchema = Yup.object({
@@ -65,5 +70,14 @@ export const transferMoneySchema = Yup.array().of(
         }),
     }),
 )
+
+export const walletTransferSchema = Yup.object({
+    subAccount: Yup.string().required(''),
+    receiver: Yup.string().required(),
+    valueInUSD: Yup.string()
+        .required('Please enter amount')
+        .matches(/[0-9]/, 'Invalid amount'),
+})
+
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

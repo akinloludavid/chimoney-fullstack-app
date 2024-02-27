@@ -3,9 +3,29 @@ import {
     paymentInitiationValidaiton,
     paymentVerificationValidation,
     payoutValidation,
+    signUpValidation,
+    subAccountValidation,
     userValidation,
+    walletTransferValidation,
 } from '../utils/validations'
 
+export const validateSignup = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+    signUpValidation
+        .validateAsync(req.body, { abortEarly: false })
+        .then(_value => {
+            next()
+        })
+        .catch(error => {
+            return res.status(400).json({
+                message: error.message,
+                status: 'error',
+            })
+        })
+}
 export const validateUser = (
     req: Request,
     res: Response,
@@ -66,6 +86,42 @@ export const validatePaymentVerification = (
     next: NextFunction,
 ) => {
     paymentVerificationValidation
+        .validateAsync(req.body, { abortEarly: false })
+        .then(_value => {
+            next()
+        })
+        .catch(error => {
+            return res.status(400).json({
+                message: error.message,
+                status: 'error',
+            })
+        })
+}
+
+export const validateSubAccount = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+    subAccountValidation
+        .validateAsync(req.body, { abortEarly: false })
+        .then(_value => {
+            next()
+        })
+        .catch(error => {
+            return res.status(400).json({
+                message: error.message,
+                status: 'error',
+            })
+        })
+}
+
+export const validateWalletTransfer = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+    walletTransferValidation
         .validateAsync(req.body, { abortEarly: false })
         .then(_value => {
             next()

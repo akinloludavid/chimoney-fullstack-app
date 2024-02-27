@@ -18,6 +18,10 @@ export interface ISubtask {
 export interface ISignUpPayload {
     email: string
     password: string
+    phoneNumber: string
+    firstName: string
+    lastName: string
+    name?: string
 }
 
 export interface ILoginPayload {
@@ -42,4 +46,10 @@ export interface ITransferMoneyPayload {
 export interface IDrawer {
     isOpen: boolean
     onClose: () => void
+}
+
+export interface IWalletTransferPayload {
+    valueInUSD: string
+    receiver: string
+    subAccount: string
 }

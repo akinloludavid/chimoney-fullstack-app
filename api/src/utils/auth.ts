@@ -21,9 +21,9 @@ export const verifyToken = (token: string): Promise<any> => {
     })
 }
 
-export const encryptPassword = async (password: string) => {
+export const encryptPassword = async (pass: string) => {
     const salt = await bcrypt.genSalt(12)
-    password = await bcrypt.hash(password, salt)
+    let password = await bcrypt.hash(pass, salt)
     return password
 }
 

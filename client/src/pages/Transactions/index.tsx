@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { TableLoader } from '../../components/Loaders'
 import { useCustomToast } from '../../utils/toast'
-import { useGetTransactions } from './api'
+import { useGetTransactions } from '../Dashboard/api'
 
 const Transaction = () => {
     const {
@@ -22,6 +22,7 @@ const Transaction = () => {
         error,
     } = useGetTransactions()
     const transactionsData = transactions?.data
+
     const { errorToast } = useCustomToast()
     if (isLoadingTransactions) {
         return <TableLoader />

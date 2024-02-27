@@ -4,7 +4,9 @@ import { encryptData } from '../utils/encryptions'
 
 export const getAllWallets = async (req: Request, res: Response) => {
     try {
-        const response = await axiosInstance.post(`/wallets/list`)
+        const response = await axiosInstance.post(`/wallets/list`, {
+            subAccount: req.query.id,
+        })
         return res.status(200).json({
             data: encryptData(response.data),
             status: 'success',
@@ -35,12 +37,8 @@ export const getAllWalletById = async (req: Request, res: Response) => {
 }
 
 export const transferBetweenWallets = async (req: Request, res: Response) => {
-    const { receiver, valueInUSD } = req.body
     try {
-        const response = await axiosInstance.post(`/wallets/transfer`, {
-            receiver,
-            valueInUSD,
-        })
+        const response = await axiosInstance.post(`/wallets/transfer`, req.body)
         return res.status(200).json({
             data: encryptData(response.data),
             status: 'success',

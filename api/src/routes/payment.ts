@@ -25,6 +25,7 @@ router.post(
     validatePayout,
     transferMoneyOut,
 )
+
 router.post(
     '/verify/payment',
     isAuthenticated,

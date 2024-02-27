@@ -89,7 +89,7 @@ I also learnt how to encrypt user data in local storage.
 
 ### CI/CD
 I implemented a CI/CD process for the api using github actions. 
-The workflow for the client side can be found in the .github/workflows/apu.yml
+The workflow for the client side can be found in the .github/workflows/api.yml
 
 ### How To Run Locally
 

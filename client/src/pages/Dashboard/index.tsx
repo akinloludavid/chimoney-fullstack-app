@@ -142,12 +142,14 @@ const Dashboard = () => {
                                                 {transaction?.valueInUSD}
                                             </Td>
                                             <Td>
-                                                {
-                                                    transaction?.redeemData
-                                                        ?.walletID
-                                                }
+                                                {transaction?.redeemData
+                                                    ?.walletID ||
+                                                    transaction?.email}
                                             </Td>
-                                            <Td>{transaction?.payerEmail}</Td>
+                                            <Td>
+                                                {transaction?.payerEmail ||
+                                                    transaction?.issuer}
+                                            </Td>
                                             <Td>{transaction?.status}</Td>
                                         </Tr>
                                     ))}

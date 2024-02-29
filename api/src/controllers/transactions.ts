@@ -4,7 +4,9 @@ import { encryptData } from '../utils/encryptions'
 
 export const getAllTransactions = async (req: Request, res: Response) => {
     try {
-        const response = await axiosInstance.post(`/accounts/transactions`)
+        const response = await axiosInstance.post(`/accounts/transactions`, {
+            subAccount: req.query.id,
+        })
         return res.status(200).json({
             data: encryptData(response.data),
             status: 'success',

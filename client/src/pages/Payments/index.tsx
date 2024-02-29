@@ -6,15 +6,17 @@ import CustomInput from '../../components/CustomInput'
 import ModalContainer from '../../components/ModalContainer'
 import { useCustomToast } from '../../utils/toast'
 import { requestPaymentSchema, useCustomFormik } from '../../utils/validations'
-import { useGetTransactions } from '../Transactions/api'
+import { useGetTransactions } from '../Dashboard/api'
 import { useRequestPayment } from './api'
 import MakePayment from './MakePayment'
+import WalletTransfer from './WalletTransfer'
 
 const Payments = () => {
     const { successToast, errorToast } = useCustomToast()
     const boxBg = useColorModeValue('light.secBg', 'dark.secBg')
     const [showInitiatePaymentModal, setShowInitiatePaymentModal] =
         useState(false)
+    const [showWalletTransfer, setWalletTransfer] = useState(false)
 
     const [showTransferModal, setShowTransferModal] = useState(false)
     const [paymentLink, setPaymentLink] = useState('')
@@ -131,6 +133,10 @@ const Payments = () => {
                 isOpen={showTransferModal}
                 onClose={() => setShowTransferModal(false)}
             />
+            <WalletTransfer
+                isOpen={showWalletTransfer}
+                onClose={() => setWalletTransfer(false)}
+            />
             <Flex gap='36px' flexDir={['column', 'row', 'row']}>
                 <Flex
                     flexDir={'column'}
@@ -145,6 +151,7 @@ const Payments = () => {
                     </Text>
                     <Button
                         w='full'
+                        mt='auto'
                         onClick={() => setShowInitiatePaymentModal(true)}
                     >
                         Request Payment
@@ -159,10 +166,29 @@ const Payments = () => {
                     p='24px'
                     w={['100%', '10%%', '240px']}
                 >
-                    <Text>
-                        Transfer Money To both Users or Non users of Chimoney{' '}
-                    </Text>
-                    <Button w='full' onClick={() => setShowTransferModal(true)}>
+                    <Text>Transfer Money To Non users of Chimoney </Text>
+                    <Button
+                        w='full'
+                        mt='auto'
+                        onClick={() => setShowTransferModal(true)}
+                    >
+                        Make Payment
+                    </Button>
+                </Flex>
+                <Flex
+                    flexDir={'column'}
+                    gap='48px'
+                    borderRadius='8px'
+                    bg={boxBg}
+                    p='24px'
+                    w={['100%', '10%%', '240px']}
+                >
+                    <Text>Wallet to Wallet Transfer</Text>
+                    <Button
+                        w='full'
+                        mt='auto'
+                        onClick={() => setWalletTransfer(true)}
+                    >
                         Make Payment
                     </Button>
                 </Flex>

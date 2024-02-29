@@ -45,6 +45,7 @@ export const transferMoneyOut = async (req: Request, res: Response) => {
         const response = await axiosInstance.post(`/payouts/chimoney`, {
             chimoneys: req.body,
             subAccount: req.query.id,
+            turnOffNotification: false,
         })
         return res.status(200).json({
             data: encryptData(response.data),
